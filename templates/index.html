@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>PDF Merger</title>
+</head>
+<body>
+    <h1>PDF Merger</h1>
+    <form method="POST" enctype="multipart/form-data">
+        <label for="userfile">Upload Your PDF File:</label><br>
+        <input type="file" id="userfile" name="userfile" accept=".pdf" required><br><br>
+        
+        <label for="predefined_pdf">Select a Predefined PDF to Merge With:</label><br>
+        <select id="predefined_pdf" name="predefined_pdf" required>
+            {% for pdf_name, pdf_path in predefined_pdfs.items() %}
+                <option value="{{ pdf_name }}">{{ pdf_name }}</option>
+            {% endfor %}
+        </select><br><br>
+        
+        <input type="submit" value="Merge PDFs">
+    </form>
+</body>
+</html>
